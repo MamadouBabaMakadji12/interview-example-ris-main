@@ -7,6 +7,6 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class UpdateEmployeeRequestDto extends EmployeeRequestDto {
-    @NotNull
+    @NotNull(message = "Employee Id cannot be null")
     private Long employeeId;
 }

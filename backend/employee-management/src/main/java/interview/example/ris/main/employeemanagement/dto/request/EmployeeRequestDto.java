@@ -6,14 +6,14 @@ import lombok.Data;
 
 @Data
 public class EmployeeRequestDto {
-    @NotBlank
+    @NotBlank(message = "Invalid fullName")
     private String fullName;
-    @NotBlank
+    @NotBlank(message = "Invalid address")
     private String address;
-    @NotBlank
+    @NotBlank(message = "Phone number can not be blank")
     private String phoneNumber;
     @NotBlank
-    @Email
+    @Email(message = "Invalid email")
     private String email;
     private Long departmentId;
 }

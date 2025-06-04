@@ -26,6 +26,7 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
     }
 
+    // Handle department and employee not found exceptions
     @ExceptionHandler({DepartmentNotFoundException.class, EmployeeNotFoundException.class})
     public ResponseEntity<ErrorResponseDto> handleNotFoundExceptions(RuntimeException ex) {
         ErrorResponseDto errorResponseDto = new ErrorResponseDto(HttpStatus.NOT_FOUND.value(), ex.getMessage(), System.currentTimeMillis());
