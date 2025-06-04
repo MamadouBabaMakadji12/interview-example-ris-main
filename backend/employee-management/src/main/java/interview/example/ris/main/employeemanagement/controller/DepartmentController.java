@@ -1,5 +1,6 @@
 package interview.example.ris.main.employeemanagement.controller;
 
+import interview.example.ris.main.employeemanagement.dto.response.DepartmentDto;
 import interview.example.ris.main.employeemanagement.entity.Department;
 import interview.example.ris.main.employeemanagement.service.DepartmentService;
 import jakarta.validation.Valid;
@@ -31,8 +32,8 @@ public class DepartmentController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Department>> getAllDepartments() {
-        List<Department> departmentList = departmentService.getAllDepartments();
+    public ResponseEntity<List<DepartmentDto>> getAllDepartments() {
+        List<DepartmentDto> departmentList = departmentService.getAllDepartments();
         return new ResponseEntity<>(departmentList, HttpStatus.OK);
     }
 
