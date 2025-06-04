@@ -1,6 +1,7 @@
 package interview.example.ris.main.employeemanagement.service.impl;
 
 import interview.example.ris.main.employeemanagement.entity.Department;
+import interview.example.ris.main.employeemanagement.exception.DepartmentNotFoundException;
 import interview.example.ris.main.employeemanagement.repository.DepartmentRepository;
 import interview.example.ris.main.employeemanagement.service.DepartmentService;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +32,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         Optional<Department> optionalDepartment = departmentRepository.findById(id);
         if (optionalDepartment.isEmpty()) {
             log.info("Department with id {} not found", id);
-            return null;
+            throw new DepartmentNotFoundException("Department not found");
         }
         return optionalDepartment.get();
     }
@@ -44,7 +45,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         Optional<Department> updatedDepartmentOptional = departmentRepository.findById(department.getId());
         if (updatedDepartmentOptional.isEmpty()) {
             log.info("Department with id {} not found", department.getId());
-            throw new RuntimeException("Department with id " + department.getId() + " not found");
+            throw new DepartmentNotFoundException("Department not found");
         }
         return departmentRepository.save(department);
     }

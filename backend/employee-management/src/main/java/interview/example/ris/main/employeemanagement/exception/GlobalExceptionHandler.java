@@ -1,5 +1,6 @@
 package interview.example.ris.main.employeemanagement.exception;
 
+import interview.example.ris.main.employeemanagement.dto.response.ErrorResponseDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -23,5 +24,11 @@ public class GlobalExceptionHandler {
             errors.put(fieldName, errorMessage);
         });
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
+    }
+
+    @ExceptionHandler({DepartmentNotFoundException.class, EmployeeNotFoundException.class})
+    public ResponseEntity<ErrorResponseDto> handleNotFoundExceptions(RuntimeException ex) {
+        ErrorResponseDto errorResponseDto = new ErrorResponseDto(HttpStatus.NOT_FOUND.value(), ex.getMessage(), System.currentTimeMillis());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponseDto);
     }
 }

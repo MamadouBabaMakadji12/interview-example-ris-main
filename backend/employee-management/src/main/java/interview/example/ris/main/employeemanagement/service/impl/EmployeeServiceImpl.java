@@ -4,6 +4,8 @@ import interview.example.ris.main.employeemanagement.dto.request.EmployeeRequest
 import interview.example.ris.main.employeemanagement.dto.request.UpdateEmployeeRequestDto;
 import interview.example.ris.main.employeemanagement.entity.Department;
 import interview.example.ris.main.employeemanagement.entity.Employee;
+import interview.example.ris.main.employeemanagement.exception.DepartmentNotFoundException;
+import interview.example.ris.main.employeemanagement.exception.EmployeeNotFoundException;
 import interview.example.ris.main.employeemanagement.repository.DepartmentRepository;
 import interview.example.ris.main.employeemanagement.repository.EmployeeRepository;
 import interview.example.ris.main.employeemanagement.service.EmployeeService;
@@ -44,7 +46,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         Optional<Employee> employee = employeeRepository.findById(requestDto.getEmployeeId());
         if (employee.isEmpty()) {
             log.error("Employee not found, id: {}", requestDto.getEmployeeId());
-            throw new RuntimeException("Employee not found");
+            throw new EmployeeNotFoundException("Employee not found");
         }
         Employee employeeToUpdate = employee.get();
         employeeToUpdate.setFullName(requestDto.getFullName());
@@ -77,7 +79,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         Optional<Department> department = departmentRepository.findById(departmentId);
         if (department.isEmpty()) {
             log.error("Department not found, id: {}", departmentId);
-            throw new RuntimeException("Department not found");
+            throw new DepartmentNotFoundException("Department not found");
         }
     }
 
@@ -89,7 +91,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                 employee.setDepartment(department.get());
             } else {
                 log.error("Department not found, id: {}", departmentId);
-                throw new RuntimeException("Department not found");
+                throw new DepartmentNotFoundException("Department not found");
             }
         } else {
             // Assign employee too "unassigned" department
