@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -59,5 +60,11 @@ public class EmployeeController {
     public ResponseEntity<Long> countEmployeeByDepartment(@PathVariable("id") Long id) {
         Long count = employeeService.countEmployeeByDepartment(id);
         return new ResponseEntity<>(count, HttpStatus.OK);
+    }
+
+    @GetMapping("search")
+    public ResponseEntity<List<Employee>> searchEmployee(@RequestParam("keyword") String keyword) {
+        List<Employee> employees = employeeService.searchEmployee(keyword);
+        return new ResponseEntity<>(employees, HttpStatus.OK);
     }
 }

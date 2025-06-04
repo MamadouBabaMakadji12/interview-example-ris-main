@@ -75,6 +75,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRepository.countByDepartmentId(id);
     }
 
+    @Override
+    public List<Employee> searchEmployee(String keyword) {
+        return employeeRepository.findByFullNameContainingIgnoreCase(keyword);
+    }
+
     private void verifyDepartment(Long departmentId) {
         Optional<Department> department = departmentRepository.findById(departmentId);
         if (department.isEmpty()) {

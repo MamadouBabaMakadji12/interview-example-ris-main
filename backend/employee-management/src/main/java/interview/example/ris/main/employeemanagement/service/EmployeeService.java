@@ -13,4 +13,5 @@ public interface EmployeeService {
     void deleteEmployee(Long id);
     List<Employee> getEmployeeByDepartment(Long id);
     Long countEmployeeByDepartment(Long id);
+    List<Employee> searchEmployee(String keyword);
 }
