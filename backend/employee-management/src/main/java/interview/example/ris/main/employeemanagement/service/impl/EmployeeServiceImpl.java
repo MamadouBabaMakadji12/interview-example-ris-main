@@ -99,12 +99,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                 throw new DepartmentNotFoundException("Department not found");
             }
         } else {
-            // Assign employee too "unassigned" department
-            final String unassigned = "Unassigned";
-            Department department = departmentRepository.findByName(unassigned).orElseGet(() ->
-                    departmentRepository.save(Department.builder().name(unassigned).build())
-            );
-            employee.setDepartment(department);
+            employee.setDepartment(null);
         }
     }
 }
