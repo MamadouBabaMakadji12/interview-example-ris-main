@@ -1,0 +1,25 @@
+<div class="container-fluid">
+    <search-employee [title]="'Employee Management'" (onSearch)="onSearch($event)"></search-employee>
+    @if (departments() && departments()!.length > 0) {
+    <div class="departments">
+        @for(department of departments(); track department.id) {
+        <div class="department-card">
+            <span class="count">{{department.numberOfEmployees}}</span>
+            <p>{{department.name}}</p>
+            @if (department.id) {
+            <a class="delete-link" href="#" (click)="delete(department.id)">Delete</a>
+            }
+            <a class="view-link" routerLink="/department-view/{{department.name}}">View</a>
+        </div>
+        }
+    </div>
+    } @else {
+    <div class="not-found">
+        <p>No departments found.</p>
+    </div>
+    }
+    <button class="add-department" (click)="addDepartment()">Add Department</button>
+</div>
+@if(searchEmployees() && searchEmployees()!.length > 0) {
+<employee-list [employees]="searchEmployees()" (onClickEmployee)="openDepartmentView($event)" [canDelete]="false"></employee-list>
+}

@@ -1,0 +1,14 @@
+<search-employee [title]="departmentName" (onSearch)="onSearchEmployee($event)"></search-employee>
+@if(!searchEmployees() && employees() && employees()!.length > 0) {
+<employee-list [employees]="employees()" (onClickEmployee)="openEmployeeView($event)"
+    (onDeleteEmployee)="deleteEmployee($event)"></employee-list>
+} @else if ((searchEmployees() && searchEmployees()!.length == 0) || (employees() && employees()!.length == 0)) {
+<div class="not-found">
+    <p>No employee found.</p>
+</div>
+}
+<button class="add-employee btn-primary" (click)="addEmployee()">Add Employee</button>
+@if(searchEmployees() && searchEmployees()!.length > 0) {
+<employee-list [employees]="searchEmployees()" (onClickEmployee)="openEmployeeView($event)"
+    (onDeleteEmployee)="deleteEmployee($event)"></employee-list>
+}
