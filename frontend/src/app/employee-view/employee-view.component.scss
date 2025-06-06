@@ -1,0 +1,31 @@
+.employee-details-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background-color: #c9e4e4;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+    h2 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: #333;
+    }
+
+    .detail-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0;
+        border-bottom: 1px solid #eee;
+
+        label {
+            font-weight: bold;
+            color: #555;
+            min-width: 120px;
+        }
+
+        span {
+            color: #333;
+        }
+    }
+}

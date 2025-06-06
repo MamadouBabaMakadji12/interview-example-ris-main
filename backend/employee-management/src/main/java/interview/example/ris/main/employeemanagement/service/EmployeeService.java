@@ -14,4 +14,5 @@ public interface EmployeeService {
     List<Employee> getEmployeeByDepartment(Long id);
     Long countEmployeeByDepartment(Long id);
     List<Employee> searchEmployee(String keyword);
+    List<Employee> getEmployeeByDepartmentName(String name);
 }

@@ -1,0 +1,22 @@
+<div class="form-container">
+    <h2>Add employee</h2>
+
+    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+        <label>Full name</label>
+        <input formControlName="fullName" type="text" />
+
+        <label>Address</label>
+        <input formControlName="address" type="text" />
+
+        <label>phone Number</label>
+        <input formControlName="phoneNumber" type="text" />
+
+        <label>Email</label>
+        <input formControlName="email" type="email" />
+
+        <!-- <label>Department</label> -->
+        <!-- <input formControlName="departmentId" type="number" /> -->
+
+        <button type="submit" [disabled]="employeeForm.invalid">Add</button>
+    </form>
+</div>

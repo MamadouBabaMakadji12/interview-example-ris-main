@@ -2,3 +2,59 @@
 body {
   font-family: 'Inter', sans-serif;
 }
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.btn-primary {
+  padding: 8px 12px;
+  font-size: 14px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.not-found {
+  background-color: cornflowerblue;
+  color: white;
+  font-weight: 700;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    margin-top: 12px;
+    font-weight: 600;
+  }
+
+  input {
+    padding: 8px;
+    font-size: 1rem;
+  }
+
+  button {
+    margin-top: 20px;
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+
+    &:disabled {
+      background: #999;
+    }
+  }
+}

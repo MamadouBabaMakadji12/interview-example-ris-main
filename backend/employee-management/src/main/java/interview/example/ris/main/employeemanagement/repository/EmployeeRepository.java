@@ -13,4 +13,5 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     List<Employee> findByFullNameContainingIgnoreCase(String keyword);
     // Unassigned department employees
     List<Employee> findByDepartmentIsNull();
+    List<Employee> findByDepartmentNameContaining(String keyword);
 }

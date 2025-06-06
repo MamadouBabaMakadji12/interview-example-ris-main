@@ -56,6 +56,12 @@ public class EmployeeController {
         return new ResponseEntity<>(employeeList, HttpStatus.OK);
     }
 
+    @GetMapping("/department/name/{name}")
+    public ResponseEntity<List<Employee>> getEmployeeByDepartment(@PathVariable("name") String name) {
+        List<Employee> employeeList = employeeService.getEmployeeByDepartmentName(name);
+        return new ResponseEntity<>(employeeList, HttpStatus.OK);
+    }
+
     @GetMapping("/count/department/{id}")
     public ResponseEntity<Long> countEmployeeByDepartment(@PathVariable("id") Long id) {
         Long count = employeeService.countEmployeeByDepartment(id);

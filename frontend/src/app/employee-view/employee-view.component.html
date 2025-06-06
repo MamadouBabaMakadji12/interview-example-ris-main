@@ -1,0 +1,35 @@
+<div class="header">
+    <button class="btn-primary" routerLink="">Home</button>
+</div>
+@if(employee()) {
+<div class="employee-details-container">
+    <h2>Employee Details</h2>
+
+    <div class="detail-item">
+        <label>Full Name:</label>
+        <span>{{ employee()?.fullName }}</span>
+    </div>
+
+    <div class="detail-item">
+        <label>Address:</label>
+        <span>{{ employee()?.address }}</span>
+    </div>
+
+    <div class="detail-item">
+        <label>Phone Number:</label>
+        <span>{{ employee()?.phoneNumber }}</span>
+    </div>
+
+    <div class="detail-item">
+        <label>Email:</label>
+        <span>{{ employee()?.email }}</span>
+    </div>
+
+    <div class="detail-item">
+        <label>Department:</label>
+        <span>{{ employee()?.department?.name ?? 'Unassigned' }}</span>
+    </div>
+</div>
+} @else {
+    <p>Error display Employee details.</p>
+}

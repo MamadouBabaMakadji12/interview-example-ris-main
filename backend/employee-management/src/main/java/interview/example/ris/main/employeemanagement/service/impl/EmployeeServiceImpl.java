@@ -23,6 +23,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeRepository employeeRepository;
     private final DepartmentRepository departmentRepository;
+    private static final String UNASSIGNED = "Unassigned";
 
     @Override
     public Employee createEmployee(EmployeeRequestDto requestDto) {
@@ -32,7 +33,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setAddress(requestDto.getAddress());
         employee.setPhoneNumber(requestDto.getPhoneNumber());
         // set employee department
-        handleEmployeeDepartment(employee, requestDto.getDepartmentId());
+        handleEmployeeDepartment(employee, requestDto.getDepartmentName());
         return employeeRepository.save(employee);
     }
 
@@ -54,7 +55,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeToUpdate.setAddress(requestDto.getAddress());
         employeeToUpdate.setPhoneNumber(requestDto.getPhoneNumber());
         // set employee department
-        handleEmployeeDepartment(employeeToUpdate, requestDto.getDepartmentId());
+        handleEmployeeDepartment(employeeToUpdate, requestDto.getDepartmentName());
         return employeeRepository.save(employeeToUpdate);
     }
 
@@ -80,6 +81,14 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRepository.findByFullNameContainingIgnoreCase(keyword);
     }
 
+    @Override
+    public List<Employee> getEmployeeByDepartmentName(String name) {
+        if (UNASSIGNED.equalsIgnoreCase(name)) {
+            return employeeRepository.findByDepartmentIsNull();
+        }
+        return employeeRepository.findByDepartmentNameContaining(name);
+    }
+
     private void verifyDepartment(Long departmentId) {
         Optional<Department> department = departmentRepository.findById(departmentId);
         if (department.isEmpty()) {
@@ -88,14 +97,14 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
     }
 
-    private void handleEmployeeDepartment(Employee employee, Long departmentId) {
-        if (departmentId != null) {
-            Optional<Department> department = departmentRepository.findById(departmentId);
+    private void handleEmployeeDepartment(Employee employee, String departmentName) {
+        if (departmentName != null && !UNASSIGNED.equalsIgnoreCase(departmentName)) {
+            Optional<Department> department = departmentRepository.findByName(departmentName);
             // check if department exist, if it not exist throw an exception
             if (department.isPresent()) {
                 employee.setDepartment(department.get());
             } else {
-                log.error("Department not found, id: {}", departmentId);
+                log.error("Department not found, name: {}", departmentName);
                 throw new DepartmentNotFoundException("Department not found");
             }
         } else {

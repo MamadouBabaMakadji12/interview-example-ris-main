@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,9 +30,9 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public List<DepartmentDto> getAllDepartments() {
         List<Department> departments = departmentRepository.findAll();
-        List<DepartmentDto> departmentDtoList = departments.stream().map(department ->
-            DepartmentDto.builder().name(department.getName())
-                    .numberOfEmployees(employeeRepository.countByDepartmentId(department.getId())).build()).toList();
+        List<DepartmentDto> departmentDtoList = new ArrayList<>(departments.stream().map(department ->
+                DepartmentDto.builder().name(department.getName()).id(department.getId())
+                        .numberOfEmployees(employeeRepository.countByDepartmentId(department.getId())).build()).toList());
         List<Employee> unassignedEmployees = employeeRepository.findByDepartmentIsNull();
         // Add unassigned department if there are unassigned employees
         if (!unassignedEmployees.isEmpty()) {

@@ -1,0 +1,17 @@
+<div class="container">
+    <form [formGroup]="departmentForm" (ngSubmit)="onSubmit()" class="department-form">
+        <div class="form-group">
+            <!-- <label for="name">Department name</label> -->
+            <input id="name" type="text" formControlName="name" placeholder="Enter department name" />
+            @if (departmentForm.get('name')?.touched && departmentForm.get('name')?.invalid) {
+            <div class="error">
+                <small>Department name is required</small>
+            </div>
+            }
+        </div>
+        <div class="actions">
+            <button type="submit" [disabled]="departmentForm.invalid">Create department</button>
+            <!-- <button (click)="onCancel()">Cancel</button> -->
+        </div>
+    </form>
+</div>
