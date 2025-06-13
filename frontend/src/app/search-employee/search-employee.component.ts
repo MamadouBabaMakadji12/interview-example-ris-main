@@ -1,11 +1,12 @@
-import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 import { debounceTime, Subject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'search-employee',
-  standalone: false,
+  standalone: true,
   templateUrl: './search-employee.component.html',
-  styleUrl: './search-employee.component.scss'
+  styleUrl: './search-employee.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchEmployeeComponent implements OnDestroy {
   @Input()
