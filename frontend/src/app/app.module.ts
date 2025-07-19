@@ -12,10 +12,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { DepartmentFormComponent } from './department-form/department-form.component';
 import { DepartmentListComponent } from './department-list/department-list.component';
 import { DepartmentViewComponent } from './department-view/department-view.component';
-import { SearchEmployeeComponent } from './search-employee/search-employee.component';
-import { EmployeeViewComponent } from './employee-view/employee-view.component';
-import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { EmployeeFormComponent } from './employee-form/employee-form.component';
+import { EmployeeListComponent } from './employee-list/employee-list.component';
+import { EmployeeViewComponent } from './employee-view/employee-view.component';
+import { SearchEmployeeComponent } from './search-employee/search-employee.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,6 @@ import { EmployeeFormComponent } from './employee-form/employee-form.component';
     DepartmentListComponent,
     DepartmentFormComponent,
     DepartmentViewComponent,
-    SearchEmployeeComponent,
     EmployeeViewComponent,
     EmployeeListComponent,
     EmployeeFormComponent
@@ -36,6 +35,7 @@ import { EmployeeFormComponent } from './employee-form/employee-form.component';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    SearchEmployeeComponent,
     RouterModule
   ],
   providers: [provideHttpClient()],
